@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { IngestionApiService } from './ingestion-api.service';
 
-@Controller()
+@Controller('v1/ingest')
 export class IngestionApiController {
   constructor(private readonly ingestionApiService: IngestionApiService) {}
 
-  @Get()
-  getHello(): string {
-    return this.ingestionApiService.getHello();
+  @Post()
+  ingest(@Body() payload: any) {
+    return this.ingestionApiService.ingest(payload);
   }
 }

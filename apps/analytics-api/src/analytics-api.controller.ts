@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AnalyticsApiService } from './analytics-api.service';
 
-@Controller()
+@Controller('v1/analytics')
 export class AnalyticsApiController {
   constructor(private readonly analyticsApiService: AnalyticsApiService) {}
 
-  @Get()
-  getHello(): string {
-    return this.analyticsApiService.getHello();
+  @Get('performance/:vehicleId')
+  getPerformance(@Param('vehicleId') vehicleId: string) {
+    return this.analyticsApiService.getVehiclePerformance(vehicleId);
   }
 }
